@@ -60,7 +60,7 @@ namespace Cha0sImageLib
             }
             outputImg.FrameDelay = CONST_FRAMEDELAY;
 
-            outputImg.Save(pOutputStream, new GifFormat());
+            outputImg.Save(pOutputStream, new GifEncoder());
         }
 
         public static void MoreJPEG(Stream pImageStream, Stream pOutputStream)
