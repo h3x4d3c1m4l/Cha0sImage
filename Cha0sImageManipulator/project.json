@@ -2,27 +2,20 @@
   "copyright": "(c) h3x4d3c1m4l, released under GPL v3 licence\r\nhttps://github.com/h3x4d3c1m4l/Cha0sImage",
   "title": "Cha0sImageManipulator",
   "description": "Crazy image manipulation tool",
-  "version": "1.0.0-unstable",
+  "version": "1.0.1-unstable",
 
   "buildOptions": {
     "emitEntryPoint": true
   },
 
   "dependencies": {
-    "Cha0sImageLib": "1.0.0-*",
+    "Cha0sImageLib": "1.0.1-*",
     "CommandLineParser": "2.1.1-beta",
-    "Microsoft.NETCore.App": "1.1.0",
+    "Microsoft.NETCore.App": "2.0.0",
     "System.Diagnostics.FileVersionInfo": "4.3.0"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": "dnxcore50"
-    }
-  },
-
-  "runtimes": {
-	"win7-x86": {},
-    "win7-x64": {}
+    "netcoreapp2.0": {}
   }
 }

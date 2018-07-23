@@ -1,5 +1,11 @@
 .vs/
 *.user
-bin
-obj
+bin/
+obj/
 project.lock.json
+packages/
+*.userprefs
+*.DotSettings
+.idea/
+*.iml
+*~

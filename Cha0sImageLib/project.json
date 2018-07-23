@@ -2,20 +2,15 @@
   "copyright": "(c) h3x4d3c1m4l, released under GPL v3 licence\r\nhttps://github.com/h3x4d3c1m4l/Cha0sImage",
   "title": "Cha0sImageLib",
   "description": "Crazy image manipulation library",
-  "version": "1.0.0-unstable",
+  "version": "1.0.1-unstable",
 
   "dependencies": {
-    "ImageSharp": "1.0.0-alpha1-00053",
-    "ImageSharp.Drawing": "1.0.0-alpha1-00033",
-    "ImageSharp.Formats.Bmp": "1.0.0-alpha1-00033",
-    "ImageSharp.Formats.Gif": "1.0.0-alpha1-00033",
-    "ImageSharp.Formats.Jpeg": "1.0.0-alpha1-00033",
-    "ImageSharp.Formats.Png": "1.0.0-alpha1-00033",
-    "ImageSharp.Processing": "1.0.0-alpha1-00033",
-    "Microsoft.NETCore.App": "1.1.0"
+    "SixLabors.ImageSharp": "1.0.0-beta0002",
+    "SixLabors.ImageSharp.Drawing": "1.0.0-beta0002",
+    "Microsoft.NETCore.App": "2.0.0"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {}
+    "netcoreapp2.0": {}
   }
 }

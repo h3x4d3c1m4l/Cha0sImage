@@ -16,8 +16,10 @@
 */
 using System;
 using System.IO;
-using ImageSharp;
-using ImageSharp.Formats;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Gif;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.Primitives;
 
 namespace Cha0sImageLib
 {
@@ -29,7 +31,7 @@ namespace Cha0sImageLib
             const int CONST_FRAMES = 10;
             const int CONST_FRAMEDELAY = 2;
 
-            var inputImg = new Image(pImageStream);
+            var inputImg = Image.Load(pImageStream);
 
             var h = inputImg.Height;
             var hMaxOffset = (int) (CONST_MAX_OFFSET_PERCENTAGE / 100 * h);
@@ -37,38 +39,41 @@ namespace Cha0sImageLib
             var wMaxOffset = (int) (CONST_MAX_OFFSET_PERCENTAGE / 100 * w);
 
             var rng = new Random();
-            var outputImg = new Image(inputImg).Crop(w - wMaxOffset, h - hMaxOffset);
+
+            var outputImg = inputImg.Clone();
+            outputImg.Mutate(x => x.Crop(w - wMaxOffset, h - hMaxOffset));
             for (var i = 0; i < CONST_FRAMES; i++)
             {
-                var clone = new Image(inputImg);
+                var clone = inputImg.Clone();
 
                 // offset
                 var xshift = rng.Next(0, hMaxOffset);
                 var yshift = rng.Next(0, wMaxOffset);
-                clone.Crop(new Rectangle(xshift, yshift, w - wMaxOffset, h - hMaxOffset));
+                clone.Mutate(x => x.Crop(new Rectangle(xshift, yshift, w - wMaxOffset, h - hMaxOffset)));
 
                 // color overlay
-                var randomColor = Color.Transparent;
+                var randomColor = Rgba32.Transparent;
                 randomColor.R = (byte)rng.Next(0, 255);
                 randomColor.G = (byte)rng.Next(0, 255);
                 randomColor.B = (byte)rng.Next(0, 255);
                 randomColor.A = 150;
-                clone.Fill(randomColor);
-
+                clone.Mutate(x => x.Fill(randomColor));
+                
                 // add to animation
-                outputImg.Frames.Add(new ImageFrame(clone) { FrameDelay = CONST_FRAMEDELAY });
+                var frame = outputImg.Frames.AddFrame(clone.Frames.RootFrame);
+                frame.MetaData.FrameDelay = CONST_FRAMEDELAY;
             }
-            outputImg.FrameDelay = CONST_FRAMEDELAY;
 
-            outputImg.Save(pOutputStream, new GifEncoder());
+            outputImg.Frames.RootFrame.MetaData.FrameDelay = CONST_FRAMEDELAY;
+            outputImg.SaveAsGif(pOutputStream, new GifEncoder());
         }
 
         public static void MoreJPEG(Stream pImageStream, Stream pOutputStream)
         {
             const int CONST_QUALITY = 2;
 
-            var inputImg = new Image(pImageStream);
-            inputImg.Save(pOutputStream, new JpegEncoder { Quality = CONST_QUALITY });
+            var inputImg = Image.Load(pImageStream);
+            inputImg.SaveAsJpeg(pOutputStream, new JpegEncoder { Quality = CONST_QUALITY });
         }
     }
 }
