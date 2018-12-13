@@ -5,8 +5,8 @@
   "version": "1.0.1-unstable",
   "dependencies": {
     "Microsoft.NETCore.App": "2.1.0",
-    "SixLabors.ImageSharp": "1.0.0-beta0004",
-    "SixLabors.ImageSharp.Drawing": "1.0.0-beta0004"
+    "SixLabors.ImageSharp": "1.0.0-beta0005",
+    "SixLabors.ImageSharp.Drawing": "1.0.0-beta0005"
   },
   "frameworks": {
     "netcoreapp2.1": {}

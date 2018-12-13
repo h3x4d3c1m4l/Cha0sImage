@@ -10,7 +10,7 @@
 
   "dependencies": {
     "Cha0sImageLib": "1.0.1-*",
-    "CommandLineParser": "2.1.1-beta",
+    "CommandLineParser": "2.3.0",
     "Microsoft.NETCore.App": "2.1.0",
     "System.Diagnostics.FileVersionInfo": "4.3.0"
   },
